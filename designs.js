@@ -11,13 +11,7 @@ const color = document.querySelector('#colorPicker');
 height.setAttribute('value', 12);
 width.setAttribute('value', 12);
 color.setAttribute('value', '#009999');
-
-//click processing
-
-submit.addEventListener('click', function (event) {
-	event.preventDefault();
-	makeGrid(table, width, height);
-});
+makeGrid(table, height, width)
 
 //Declaring a function and clearing a table
 
@@ -37,17 +31,24 @@ function makeGrid(table, height, width) {
 			tr.append(td);
 		}
 	}
-
-	//	background change when clicked
-
-	table.addEventListener('click', function (event) {
-		event.preventDefault();
-		if (event.target.nodeName === 'TD') {
-			if (event.target.style.backgroundColor == '') {
-				event.target.style.backgroundColor = color.value;
-			} else {
-				event.target.style.backgroundColor = '';
-			}
-		}
-	});
 };
+
+//	background change when clicked
+
+table.addEventListener('click', function (event) {
+	event.preventDefault();
+	if (event.target.nodeName === 'TD') {
+		if (event.target.style.backgroundColor == ('')) {
+			event.target.style.backgroundColor = color.value;
+		} else {
+			event.target.style.backgroundColor = ('');
+		}
+	}
+});
+
+//click processing
+
+submit.addEventListener('click', function (event) {
+	event.preventDefault();
+	makeGrid(table, height, width);
+});
