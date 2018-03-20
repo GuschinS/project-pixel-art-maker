@@ -1,10 +1,53 @@
-// Select color input
-// Select size input
+//declaration of variables
 
-// When size is submitted by the user, call makeGrid()
+const height = document.querySelector('#inputHeight');
+const width = document.querySelector('#inputWidth');
+const submit = document.querySelector('#submit');
+const table = document.querySelector('#pixelCanvas');
+const color = document.querySelector('#colorPicker');
 
-function makeGrid() {
+//data for start
 
-// Your code goes here!
+height.setAttribute('value', 12);
+width.setAttribute('value', 12);
+color.setAttribute('value', '#009999');
 
-}
+//click processing
+
+submit.addEventListener('click', function (event) {
+	event.preventDefault();
+	makeGrid(table, width, height);
+});
+
+//Declaring a function and clearing a table
+
+function makeGrid(table, height, width) {
+	height = height.value;
+	width = width.value;
+	table.innerHTML = "";
+
+	//	building a table
+
+	for (let n = 0; n < height; n++) {
+		const tr = document.createElement('tr');
+		table.append(tr);
+
+		for (let m = 0; m < width; m++) {
+			const td = document.createElement('td');
+			tr.append(td);
+		}
+	}
+
+	//	background change when clicked
+
+	table.addEventListener('click', function (event) {
+		event.preventDefault();
+		if (event.target.nodeName === 'TD') {
+			if (event.target.style.backgroundColor == '') {
+				event.target.style.backgroundColor = color.value;
+			} else {
+				event.target.style.backgroundColor = '';
+			}
+		}
+	});
+};
